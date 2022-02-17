@@ -13,7 +13,7 @@ on:
 jobs:
   Build_And_Test_Library:
     name: Build & Test (Library)
-    runs-on: windows-latest
+    runs-on: self-hosted #windows-latest
     steps:
       - uses: actions/checkout@v2
 
