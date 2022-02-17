@@ -22,40 +22,44 @@ jobs:
         with:
           dotnet-version: ${{ env.NET_SDK_VERSION }}
 
-      - name: Get Version From Project File
-        id: proj-file-version
-        uses: KinsonDigital/vget@v0.4.0
-        with:
-          repo-owner-and-name: '${{ github.repository }}'
-          branch: '${{ github.ref }}'
-          relative-file-path: '${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Get Version From Project File
+#        id: proj-file-version
+#        uses: KinsonDigital/vget@v0.4.0
+#        with:
+#          repo-owner-and-name: '${{ github.repository }}'
+#          branch: '${{ github.ref }}'
+#          relative-file-path: '${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj'
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: Display Workflow Info
+#        run: |
+#          echo "Build Config: Debug"
+#          echo "Current Branch: ${{ github.ref }}"
+#          echo "Project File Version: ${{ steps.proj-file-version.outputs.version }}"
+#
+#      - name: Restore Dependencies
+#        run: dotnet restore "${{ github.workspace }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj"
+#
+#      - name: Build
+#        run: dotnet build "${{ github.workspace }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj" `
+#          -c Debug `
+#          --no-restore
+#
+#      - name: Execute Unit Tests
+#        run: dotnet test "${{ github.workspace }}/Testing/${{ env.PROJECT_NAME }}Tests/${{ env.PROJECT_NAME }}Tests.csproj" `
+#          -c Debug `
+#          --collect:"Code Coverage" `
+#          --no-restore
+#
+#      - name: Publish Code Coverage Results
+#        uses: codecov/codecov-action@v1.5.2
+#        with:
+#          token: ${{ secrets.CODECOV_TOKEN }}
+#          file: ${{ github.workspace }}/Testing/${{ env.PROJECT_NAME }}Tests/TestResults/**/coverage.cobertura.xml
 
-      - name: Display Workflow Info
-        run: |
-          echo "Build Config: Debug"
-          echo "Current Branch: ${{ github.ref }}"
-          echo "Project File Version: ${{ steps.proj-file-version.outputs.version }}"
 
-      - name: Restore Dependencies
-        run: dotnet restore "${{ github.workspace }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj"
 
-      - name: Build
-        run: dotnet build "${{ github.workspace }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj" `
-          -c Debug `
-          --no-restore
 
-      - name: Execute Unit Tests
-        run: dotnet test "${{ github.workspace }}/Testing/${{ env.PROJECT_NAME }}Tests/${{ env.PROJECT_NAME }}Tests.csproj" `
-          -c Debug `
-          --collect:"Code Coverage" `
-          --no-restore
-
-      - name: Publish Code Coverage Results
-        uses: codecov/codecov-action@v1.5.2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ${{ github.workspace }}/Testing/${{ env.PROJECT_NAME }}Tests/TestResults/**/coverage.cobertura.xml
 
 #  Validate_Version:
 #    name: Validate Version
