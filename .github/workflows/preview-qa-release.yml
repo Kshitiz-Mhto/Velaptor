@@ -52,7 +52,7 @@ jobs:
           --no-restore
 
       - name: Publish Code Coverage Results
-        uses: codecov/codecov-action@v1.5.2
+        uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ${{ github.workspace }}/Testing/${{ env.PROJECT_NAME }}Tests/TestResults/**/coverage.cobertura.xml
